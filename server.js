@@ -1,8 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 var app = express();
+app.use(bodyParser.json());
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 4567;
 
 app.get('/repos/:owner/:repo/hooks', (req, res) => {
   console.log(req);
@@ -16,14 +18,14 @@ app.post('/repos/:owner/:repo/hooks', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-  console.log(req);
-  console.log(res);
+  var changed_files = req.body.pull_request.changed_files;
+  if (changed_files && changed_files > 1) {
+    return res.send({url:'GET /', comment: 'Please keep the number of files to minimum for a pull request', reject: true});
+  }
   res.send({url:'POST /', status: true});
 });
 
 app.get('/', (req, res) => {
-  console.log(req);
-  console.log(res);
   res.send({url:'GET /', status: true});
 });
 
