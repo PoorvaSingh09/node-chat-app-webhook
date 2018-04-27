@@ -17,6 +17,7 @@ app.post('/repos/:owner/:repo/hooks', (req, res) => {
 app.post('/', (req, res) => {
   console.log(req);
   console.log(res);
+  return {status: true};
 });
 
 app.listen(port, () => {
