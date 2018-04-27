@@ -5,6 +5,12 @@ var app = express();
 var port = process.env.PORT || 3000;
 
 app.get('/repos/:owner/:repo/hooks', (req, res) => {
+  console.log(req);
+  console.log(res);
+});
+
+app.post('/repos/:owner/:repo/hooks', (req, res) => {
+  console.log(req);
   console.log(res);
 });
 
