@@ -20,6 +20,12 @@ app.post('/', (req, res) => {
   return {status: true};
 });
 
+app.get('/', (req, res) => {
+  console.log(req);
+  console.log(res);
+  return {status: true};
+});
+
 app.listen(port, () => {
   console.log(`Server is up at ${port}`);
 });
